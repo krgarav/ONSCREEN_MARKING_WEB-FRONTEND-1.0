@@ -51,6 +51,7 @@ const CheckModule = () => {
   const rerenderer = evaluatorState.rerender;
   const currentTaskDetails = evaluatorState.currentTaskDetails;
   const { id } = useParams();
+
   useEffect(() => {
     const getTaskDetails = async () => {
       try {
@@ -244,6 +245,7 @@ const CheckModule = () => {
     console.log("question handler");
     setShowQuestionModal(true);
   };
+  console.log(taskDetails);
   useEffect(() => {
     const id = localStorage.getItem("userId");
     const fetchData = async () => {
@@ -288,7 +290,7 @@ const CheckModule = () => {
               <div className="truncate">
                 <span className="font-semibold text-gray-600">Subject</span>:{" "}
                 <span className="font-bold text-gray-200">
-                  Engineering Mathematics - III
+                  {taskDetails?.subjectCode}
                 </span>
               </div>
             </section>
@@ -296,21 +298,13 @@ const CheckModule = () => {
             {/* Booklet Section */}
             <section className="flex-1 basis-1/3 space-y-1 overflow-hidden px-4 text-center">
               <div className="truncate">
-                <span className="font-semibold text-gray-600">
-                  Booklet Title
-                </span>
-                :{" "}
-                <span className="font-bold text-gray-200">
-                  {answerSheetCount?.answerPdfName || "Loading..."}
-                </span>
-              </div>
-              <div className="truncate">
-                <span className="font-semibold text-gray-600">
+                <span className="mr-1 font-semibold text-gray-600">
                   Current Booklet Index
                 </span>
                 :{" "}
                 <span className="font-bold text-gray-200">
-                  {taskDetails?.currentFileIndex || "N/A"}
+                  {taskDetails?.currentFileIndex || "N/A"} of{" "}
+                  {taskDetails?.totalBooklets}
                 </span>
               </div>
             </section>
@@ -327,7 +321,7 @@ const CheckModule = () => {
                 <span className="font-semibold text-gray-600">
                   Evaluation Time
                 </span>
-                :{" "}
+                :
                 <span className="inline-block w-[30px] text-center font-mono">
                   {hours}
                 </span>
@@ -422,7 +416,7 @@ const CheckModule = () => {
         </div>
 
         <div className="flex h-[90vh] w-full flex-row ">
-          <div className=" h-full w-[8%] bg-blueSecondary sm:w-[20%] md:w-[12%] lg:w-[8%]">
+          <div className=" h-full w-[8%] bg-[#F5F5F5] sm:w-[20%] md:w-[12%] lg:w-[8%]">
             <div className="h-[100%]  justify-center text-center ">
               <h2
                 className="sticky top-0 z-10 h-[10%] border-b border-gray-300 bg-[#FFFFFF] px-2 py-3 font-bold shadow-md md:text-base lg:text-xl"
@@ -439,7 +433,7 @@ const CheckModule = () => {
                 </span>
               </h2>
               <div className="h-[82%] ">
-                <div className="grid h-[100%]  grid-cols-1 overflow-auto bg-[#F5F5F5] md:grid-cols-1 lg:grid-cols-2">
+                <div className="grid  grid-cols-1 overflow-auto bg-[#F5F5F5] md:grid-cols-1 lg:grid-cols-2">
                   {Imgicons}
                 </div>
               </div>

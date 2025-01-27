@@ -20,6 +20,7 @@ import { setCurrentBookletIndex } from "store/evaluatorSlice";
 import { generateNumbers } from "services/Evaluator/generateNumber";
 import { submitBookletById } from "components/Helper/Evaluator/EvalRoute";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 const QuestionDefinition = (props) => {
   const [selectedQuestion, setSelectedQuestion] = useState(0);
   const [allQuestions, setAllQuestions] = useState([]);
@@ -33,7 +34,7 @@ const QuestionDefinition = (props) => {
   const currentAnswerPdfImageId = evaluatorState.currentAnswerPdfImageId;
   const currentBookletId = evaluatorState.currentBookletId;
   const dispatch = useDispatch();
-
+const navigate = useNavigate()
   // useEffect(() => {
   //   if (allQuestions.length !== 0) {
   //     setCurrentQuestionDefinitionId(allQuestions[currentQuestion]._id);
@@ -275,6 +276,7 @@ console.log(evaluatorState.isLoading)
 
       if (res.success) {
         toast.success(res.message);
+        navigate("/evaluator/assignedtasks");
       } else {
         toast.warning(res.message);
       }
@@ -288,16 +290,16 @@ console.log(evaluatorState.isLoading)
   return (
     <div className="h-[100%]">
       <div className="flex  h-[7%] w-[100%]">
-        <button
+        {/* <button
           type="button"
           className="mb-2  w-[50%] bg-[#33597a] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#26445e] focus:outline-none focus:ring-4 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
           onClick={handlePrevBooklet}
         >
           {"<"} Prev Booklet
-        </button>
+        </button> */}
         <button
           type="button"
-          className="mb-2  w-[50%] bg-[#33597a] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#26445e] focus:outline-none focus:ring-4 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+          className="mb-2  w-[100%] bg-[#33597a] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#26445e] focus:outline-none focus:ring-4 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
           onClick={handleNextBooklet}
         >
           Next Booklet {">"}
@@ -360,7 +362,7 @@ console.log(evaluatorState.isLoading)
           className=" w-[100%]  border border-green-700 bg-green-700 px-5 py-2.5 text-center text-sm font-medium text-green-700 text-white hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 dark:border-green-500 dark:text-red-500 dark:hover:bg-red-600 dark:hover:text-white dark:focus:ring-red-900"
           onClick={submitHandler}
         >
-          SUBMIT BOOKLET
+          SUBMIT BOOKLET AND NEXT
         </button>
       </div>
     </div>
