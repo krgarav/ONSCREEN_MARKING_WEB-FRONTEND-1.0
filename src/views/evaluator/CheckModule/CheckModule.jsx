@@ -433,7 +433,7 @@ const CheckModule = () => {
                 </span>
               </h2>
               <div className="h-[82%] ">
-                <div className="grid  grid-cols-1 overflow-auto bg-[#F5F5F5] md:grid-cols-1 lg:grid-cols-2">
+                <div className="grid max-h-full  grid-cols-1 overflow-auto bg-[#F5F5F5] md:grid-cols-1 lg:grid-cols-2">
                   {Imgicons}
                 </div>
               </div>
